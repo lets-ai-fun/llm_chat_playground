@@ -11,11 +11,20 @@ At the current stage, the following functionalities are implemented:
   
 **More chain type support (different RAG type), LangGraph graph and features will be added soon!**
 
+# Prerequisites
+- Install [Ollama](https://ollama.com)
 # To run:
-- setup
-`pip install -r requirements.txt`
+## Ollama Setup
+- pull models (update the models to download if you change the model you use in program): you can perfrom this just once as model are cached on your local machine once dowloaded
+  - `ollama pull llama3.2`
+  - `ollama pull nomic-embed-text`
+- run ollama `ollama serve`
 
+## Dependencies Setup
+`pip install -r requirements.txt`
+## Document for RAG Setup
 - Place PDFs to be used for RAG in the `documents` folder.
+## Run 
 - run using `python main.py`
   - Note: I use Python 3.12.0 
 
