@@ -1,6 +1,6 @@
 # LLM Chat Playground
 A basic python llm project to use as playground in implementing different LangChain application types.
-  
+    
 The purpose of the project is to provide organized code that allows experimentation with different forms of interaction with an LLM.
 
 At the current stage, the following functionalities are implemented:
