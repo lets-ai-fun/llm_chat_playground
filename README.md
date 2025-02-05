@@ -4,7 +4,7 @@ A basic python llm project to use as playground in implementing different LangCh
 The purpose of the project is to provide organized code that allows experimentation with different forms of interaction with an LLM.
 
 At the current stage, the following functionalities are implemented:
-
+ 
 - Creation of a simple chain (i.e. input passed directly to the LLM)
 - Creation of a chain with RAG support (using Chroma as a vector store)
 - Use of Ollama as the LLM and Embedding provider
