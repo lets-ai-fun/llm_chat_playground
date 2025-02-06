@@ -46,7 +46,7 @@ After setting up the vector store, you will be prompted to choose the type of ch
 - **Enter `simple`** for a chain without RAG, where the input is passed directly to the LLM, and the generated response is displayed.  
 - **Enter `rag`** for a RAG-based chain, where retrieved data from the vector store (based on the user input) is used as context.
 
-**Once the chain type to use is chosen, insert the question for the chain or type `quit` to exit the program.***
+**Once the chain type to use is chosen, insert the question for the chain or type `quit` to exit the program.**
 
 # Details
 The project is organized into classes with specific purposes:
