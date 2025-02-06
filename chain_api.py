@@ -63,7 +63,7 @@ def endless_chat(
     """
 
     while True:
-        user_message = input("input message:")
+        user_message = input("input message ['quit' to exit]:")
         match user_message:
             case 'quit':
                 break

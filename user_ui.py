@@ -75,7 +75,7 @@ def start_program_ui() -> (RunnableSequence, my_types.CHAIN_TYPE):
         vectorstore = __setup_vectorstore(embeddings=embeddings)
     else:
         vectorstore = __load_vectorstore(embeddings=embeddings)
-    input_chain_to_invoke = input("""Which chain do you want to use [ 'quit' to exit]?
+    input_chain_to_invoke = input("""Which chain do you want to use?
 - 'simple' for simple chain with llm invocation using user input
 - 'rag' for chain using RAG on documents provided
 """
