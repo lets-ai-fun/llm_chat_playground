@@ -9,7 +9,7 @@ At the current stage, the following functionalities are implemented:
 - Creation of a chain with RAG support (using Chroma as a vector store)
 - Use of Ollama as the LLM and Embedding provider
   
-**More chain type support (different RAG type), LangGraph graph and features will be added soon!**
+**More chain type support (different RAG type), LangGraph graph and features (eg. history) will be added soon!**
 
 # Prerequisites
 - Install [Ollama](https://ollama.com)
