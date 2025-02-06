@@ -35,17 +35,18 @@ At the start, you will be prompted whether you want to clear the vector store:
 - **If you respond with 'n'**, the vector store will not be updated, but its existing content will be loaded.  
 **Note:**  
 On the first run, the vector store does not exist (as it is not included in the GitHub repository). If you choose not to create it, you will simply have an empty vector store. In this case, using the chain with RAG will likely result in irrelevant or no responses.
-### Vector store loader
+### Note on data loading in vector store
 A couple of loaders are used
 - one `WebBaseLoader` to scrape content from url(s) defined in `my_types` class (as an expale is provided 'https://lilianweng.github.io/posts/2023-06-23-agent/')
 - n `document loader`, one for each docuemnt in 'documents' folder
-To update this behaviour please look at `main.py` in `setup_vectorstore` method where you can find comments explaining the needed code changes.
+To update this behaviour please look at `user_ui.py` in `__setup_vectorstore` method where you can find comments explaining the needed code changes.
 ## 2 - Chain execution
 After setting up the vector store, you will be prompted to choose the type of chain to use:
 
 - **Enter `simple`** for a chain without RAG, where the input is passed directly to the LLM, and the generated response is displayed.  
-- **Enter `rag`** for a RAG-based chain, where retrieved data from the vector store (based on the user input) is used as context.  
-- **Enter `quit`** to exit the program.
+- **Enter `rag`** for a RAG-based chain, where retrieved data from the vector store (based on the user input) is used as context.
+
+**Once the chain type to use is chosen, insert the question for the chain or type `quit` to exit the program.***
 
 # Details
 The project is organized into classes with specific purposes:
