@@ -55,7 +55,7 @@ def setup_vectorstore(
         # delete collection only if it exists!
         chromaClient.delete_collection(name= __collection_name__)
 
-    print(f"loading {len(all_splits)} chunks into vectorstore collectàion '{__collection_name__}'...please wait")
+    print(f"loading {len(all_splits)} chunks into vectorstore collection '{__collection_name__}'...please wait")
     vector_store = Chroma.from_documents(documents= all_splits,
                                          collection_name= __collection_name__,
                                          embedding= embeddings,
