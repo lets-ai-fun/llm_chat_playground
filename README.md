@@ -37,7 +37,7 @@ At the start, you will be prompted whether you want to clear the vector store:
 On the first run, the vector store does not exist (as it is not included in the GitHub repository). If you choose not to create it, you will simply have an empty vector store. In this case, using the chain with RAG will likely result in irrelevant or no responses.
 ### Vector store loader
 A couple of loaders are used
-- one `WebBaseLoader` to scrape content from url 'https://lilianweng.github.io/posts/2023-06-23-agent/'
+- one `WebBaseLoader` to scrape content from url(s) defined in `my_types` class (as an expale is provided 'https://lilianweng.github.io/posts/2023-06-23-agent/')
 - n `document loader`, one for each docuemnt in 'documents' folder
 To update this behaviour please look at `main.py` in `setup_vectorstore` method where you can find comments explaining the needed code changes.
 ## 2 - Chain execution
@@ -49,9 +49,10 @@ After setting up the vector store, you will be prompted to choose the type of ch
 
 # Details
 The project is organized into classes with specific purposes:
-- `main.py` serves as the entry point
-- `chain_api.py` handles the creation of the chain and the execution loop (once the chain is created, users can ask questions until they enter 'quit' to exit the program)
-- `doc_loader_api.py` provides loaders for loading documents from the filesystem
+- `main.py` serves as the entry point.
+- `chain_api.py` handles the creation of the chain and the execution loop (once the chain is created, users can ask questions until they enter 'quit' to exit the program).
+- `doc_loader_api.py` provides loaders for loading documents from the filesystem.
 - `vectorstore_api.py`: Creates a collection in the vector store from the documents loaded by the loader.  
 - `my_loader.py`: A wrapper around a `BaseLoader` to include additional information (currently, a description useful for debugging and identifying the loader being used).  
-- `my_types.py`: A class containing enums to better define the type of chain being used (either a simple chain or an RAG chain).
+- `my_types.py`: A class containing enums to better define the type of chain being used (either a simple chain or an RAG chain) and constants which can be changed easily (eg. which LLLM/embedding model to use, the list of url(s) to use to populate vector store).
+- `user_ui.py`: define the user UI flow (pose question to user about vector store, setup chain based on user choices, run selected chain in a forever loop to let user pose more questions)
