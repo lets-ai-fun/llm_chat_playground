@@ -42,7 +42,6 @@ def setup_vectorstore(
         # print(f"no document found to populate vectorstore")
         raise SystemExit(f"no document found to populate vectorstore")
 
-    print(f"deleting collection '{__collection_name__}' from vectorstore")
     #Chroma(persist_directory= db_folder).delete_collection(name= __collection_name__)
 
     # langchain Chroma client doesn't allow to remove specific collection before cerating one in the same code
@@ -51,8 +50,9 @@ def setup_vectorstore(
     #
     # SO, to delete the specific colelction, we've to resort to chromadb python package
     chromaClient = chromadb_direct.PersistentClient(path= db_folder)
-    if chromaClient.get_collection(name= __collection_name__):
+    if len([coll for coll in chromaClient.list_collections() if __collection_name__ == coll]) > 0:
         # delete collection only if it exists!
+        print(f"deleting collection '{__collection_name__}' from vectorstore")
         chromaClient.delete_collection(name= __collection_name__)
 
     print(f"loading {len(all_splits)} chunks into vectorstore collection '{__collection_name__}'...please wait")
