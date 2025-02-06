@@ -39,20 +39,23 @@ def setup_vectorstore(
     docs = __load_documents(loader)
     all_splits = __chuck_documents(chunk_overlap, chunk_size, docs)
     if len(all_splits) == 0:
-        print(f"no document found to populate vectorstore")
+        # print(f"no document found to populate vectorstore")
         raise SystemExit(f"no document found to populate vectorstore")
 
     print(f"deleting collection '{__collection_name__}' from vectorstore")
     #Chroma(persist_directory= db_folder).delete_collection(name= __collection_name__)
 
     # langchain Chroma client doesn't allow to remove specific collection before cerating one in the same code
-    # DEtails: the attribute collection.name is setup in ' Chroma.from_documents(....)' method:
+    # Details: the attribute collection.name is setup in ' Chroma.from_documents(....)' method:
     # before this method invocation it's set to the constant _LANGCHAIN_DEFAULT_COLLECTION_NAME = "langchain" .
     #
     # SO, to delete the specific colelction, we've to resort to chromadb python package
     chromaClient = chromadb_direct.PersistentClient(path= db_folder)
-    chromaClient.delete_collection(name= __collection_name__)
-    print(f"loading {len(all_splits)} chunks into vectorstore collection '{__collection_name__}'...please wait")
+    if chromaClient.get_collection(name= __collection_name__):
+        # delete collection only if it exists!
+        chromaClient.delete_collection(name= __collection_name__)
+
+    print(f"loading {len(all_splits)} chunks into vectorstore collectàion '{__collection_name__}'...please wait")
     vector_store = Chroma.from_documents(documents= all_splits,
                                          collection_name= __collection_name__,
                                          embedding= embeddings,
