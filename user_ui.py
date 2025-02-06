@@ -75,23 +75,29 @@ def start_program_ui() -> (RunnableSequence, my_types.CHAIN_TYPE):
         vectorstore = __setup_vectorstore(embeddings=embeddings)
     else:
         vectorstore = __load_vectorstore(embeddings=embeddings)
-    input_chain_to_invoke = input("""Which chain do you want to use?
-- 'simple' for simple chain with llm invocation using user input
-- 'rag' for chain using RAG on documents provided
-"""
-                                  )
+
     chain_type: my_types.CHAIN_TYPE
     chain: RunnableSequence
-    match input_chain_to_invoke:
-        case 'simple':
-            chain_type = my_types.CHAIN_TYPE.CHAIN_SIMPLE
-            chain = chain_api.setup_chain(
-                ollama_model_name=my_types.OLLAMA_MODEL_NAME
-            )
-        case 'rag':
-            chain_type = my_types.CHAIN_TYPE.CHAIN_RAG
-            chain = chain_api.setup_rag_chain(
-                retriever=vectorstore.as_retriever(),
-                ollama_model_name=my_types.OLLAMA_MODEL_NAME
-            )
+    while True:
+        input_chain_to_invoke = input("Which chain do you want to use?\n"+
+            "- 'simple' for simple chain with llm invocation using user input\n"+
+            "- 'rag' for chain using RAG on documents provided\n")
+        match input_chain_to_invoke:
+            case 'simple':
+                chain_type = my_types.CHAIN_TYPE.CHAIN_SIMPLE
+                chain = chain_api.setup_chain(
+                    ollama_model_name=my_types.OLLAMA_MODEL_NAME
+                )
+                break
+            case 'rag':
+                chain_type = my_types.CHAIN_TYPE.CHAIN_RAG
+                chain = chain_api.setup_rag_chain(
+                    retriever=vectorstore.as_retriever(),
+                    ollama_model_name=my_types.OLLAMA_MODEL_NAME
+                )
+                break
+            case _:
+                print(f"please insert a valid chain type")
+
+
     return (chain, chain_type)
