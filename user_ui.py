@@ -19,7 +19,7 @@ def __setup_vectorstore(embeddings: Embeddings) -> VectorStore:
     Previous content is erased before loading new one
     """
     # the loader used are
-    # - 1 WebBaseLoader to scrape content from url(s) specifien in RAG_URLS constant
+    # - 1 WebBaseLoader to scrape content from url(s) specified in RAG_URLS constant
     # - n docuemnt loader, one for each docuemnt in 'documents' folder
     urls = my_types.RAG_URLS
     webLoader: WebBaseLoader= None
